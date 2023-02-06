@@ -12,14 +12,17 @@ const useAccountTenant = () => {
           title: 'AccountTenant',
           path: '/account',
           icon: <AccountCircleIcon />,
+          keyPermission: "account-tenant",
           children: [
             {
               title: 'Information',
               path: '/account',
+              keyPermission: "account",
             },
             {
               title: 'Change Password',
               path: '/account/changepassword',
+              keyPermission: "change-password",
             },
 			// {
 			// 	title: 'Reset Password',

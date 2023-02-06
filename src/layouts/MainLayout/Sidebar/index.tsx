@@ -33,9 +33,9 @@ const Sidebar = () => {
     return (
       <Fragment>
         <DrawerHeader>
-          <Toolbar sx={{ px:[1] }} >
+          <Toolbar sx={{ px: [1] }}>
             <Logo height={'auto'} width={32} lgUpCheck={sidebarOpen} />
-			{sidebarOpen ? <Typography>Sphinx CMS</Typography> : <></>}
+            {sidebarOpen ? <Typography>Sphinx CMS</Typography> : <></>}
           </Toolbar>
         </DrawerHeader>
         <Divider />
