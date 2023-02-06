@@ -16,7 +16,7 @@ const Notifications = Loadable(
 const AccountTenant: RouteObject = {
   path: 'account',
   element: (
-    <RoleRoute show="account-tenant1">
+    <RoleRoute show="account-tenant">
       <Outlet />
     </RoleRoute>
   ),

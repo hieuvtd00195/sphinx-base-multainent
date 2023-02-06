@@ -11,42 +11,51 @@ const useConfigurations = () => {
           title: 'Configurations',
           path: '/configurations',
           icon: <TuneIcon />,
+          keyPermission: 'configurations',
           children: [
             {
               title: 'Organisation',
               path: '/configurations/organisation',
+              keyPermission: 'organisation',
               children: [
                 {
                   title: 'Employees',
                   path: '/configurations/organisation/employees',
+                  keyPermission: 'employees',
                 },
                 {
                   title: 'Company',
                   path: '/configurations/organisation/company',
+                  keyPermission: 'company',
                 },
               ],
             },
             {
               title: 'Security',
               path: '/configurations/security',
+              keyPermission: 'security',
               children: [
                 {
                   title: 'Roles & Permissions',
                   path: '/configurations/security/roles-ermissions',
+                  keyPermission: 'roles-ermissions',
                 },
                 {
                   title: 'Authentication',
                   path: '/configurations/security/authentication',
+                  keyPermission: 'authentication',
                 },
                 {
                   title: 'Logs',
                   path: '/configurations/security/logs',
+                  keyPermission: 'logs',
                 },
               ],
             },
             {
               title: 'Notifications',
               path: '/configurations/notifications',
+              keyPermission: 'notifications',
             },
           ],
         },

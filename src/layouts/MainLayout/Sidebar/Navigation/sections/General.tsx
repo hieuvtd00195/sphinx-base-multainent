@@ -4,14 +4,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PaymentIcon from '@mui/icons-material/Payment';
 import Typography from '@mui/material/Typography';
-import { useEffect, useMemo, useState } from 'react';
+import { RoleContext } from 'contexts/RoleProvider';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import sleep from 'utils/sleep';
 import AirplayIcon from '@mui/icons-material/Airplay';
 import type { MenuSection } from '..';
 
 const useGeneral = () => {
   const [count, setCount] = useState<number>(0);
-
   useEffect(() => {
     sleep(1500).then(() => {
       setCount(100);
@@ -29,22 +29,27 @@ const useGeneral = () => {
         {
           title: 'Dashboard',
           path: '/',
-          icon: <AirplayIcon />,
+icon: <AirplayIcon />,
+          keyPermission: 'overview',
+
         },
         {
           title: 'Analytics',
           path: '/analytics',
           icon: <BarChartIcon />,
+          keyPermission: 'analytics',
         },
         {
           title: 'Finance',
           path: '/finance',
           icon: <PaymentIcon />,
+          keyPermission: 'finance',
         },
         {
           title: 'Logistics',
           path: '/logistics',
           icon: <LocalShippingIcon />,
+          keyPermission: 'logistics',
           info: () => {
             return <Typography variant="subtitle2">{count}</Typography>;
           },

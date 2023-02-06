@@ -8,7 +8,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
-import type { ReactNode } from 'react';
+import { RoleContext } from 'contexts/RoleProvider';
+import { ReactNode, useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { usePrevious } from 'react-use';
@@ -53,51 +54,54 @@ interface NavigationSectionItemsProps {
   items: MenuItem[];
   pathname: string;
   level?: number;
+  keyPermission?: string;
 }
 const NavigationSectionItems = (props: NavigationSectionItemsProps) => {
   const { items, pathname, level = 0 } = props;
-
+  const { roleData } = useContext(RoleContext);
+  console.log(roleData, 'role data');
   return (
     <List disablePadding>
       {items.reduce<ReactNode[]>((acc, item, i) => {
-        const { title, path, children, info, icon } = item;
+        const { title, path, children, info, icon, keyPermission } = item;
         const key = `${title}-${level}-${i}`;
         const partialMatch = pathname.startsWith(path);
         const exactMatch = pathname === path;
-
-        if (children) {
-          acc.push(
-            <NavigationSectionItem
-              key={key}
-              title={title}
-              active={partialMatch}
-              match={partialMatch}
-              level={level}
-              icon={icon}
-              info={info}
-              path={path}
-              pathname={pathname}
-            >
-              <NavigationSectionItems
-                items={children}
+        if (roleData.length > 0 && roleData.includes(keyPermission)) {
+          if (children) {
+            acc.push(
+              <NavigationSectionItem
+                key={key}
+                title={title}
+                active={partialMatch}
+                match={partialMatch}
+                level={level}
+                icon={icon}
+                info={info}
+                path={path}
                 pathname={pathname}
-                level={level + 1}
+              >
+                <NavigationSectionItems
+                  items={children}
+                  pathname={pathname}
+                  level={level + 1}
+                />
+              </NavigationSectionItem>
+            );
+          } else {
+            acc.push(
+              <NavigationSectionItem
+                key={key}
+                title={title}
+                active={exactMatch}
+                level={level}
+                icon={icon}
+                info={info}
+                path={path}
+                pathname={pathname}
               />
-            </NavigationSectionItem>
-          );
-        } else {
-          acc.push(
-            <NavigationSectionItem
-              key={key}
-              title={title}
-              active={exactMatch}
-              level={level}
-              icon={icon}
-              info={info}
-              path={path}
-              pathname={pathname}
-            />
-          );
+            );
+          }
         }
         return acc;
       }, [])}

@@ -13,6 +13,7 @@ export interface MenuItem {
   children?: MenuItem[];
   info?: () => JSX.Element;
   icon?: ReactNode;
+  keyPermission?: string;
 }
 
 export interface MenuSection {
