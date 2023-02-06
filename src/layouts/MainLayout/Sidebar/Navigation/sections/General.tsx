@@ -6,6 +6,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import Typography from '@mui/material/Typography';
 import { useEffect, useMemo, useState } from 'react';
 import sleep from 'utils/sleep';
+import AirplayIcon from '@mui/icons-material/Airplay';
 import type { MenuSection } from '..';
 
 const useGeneral = () => {
@@ -26,9 +27,9 @@ const useGeneral = () => {
       title: 'General',
       items: [
         {
-          title: 'Overview',
+          title: 'Dashboard',
           path: '/',
-          icon: <HomeIcon />,
+          icon: <AirplayIcon />,
         },
         {
           title: 'Analytics',
