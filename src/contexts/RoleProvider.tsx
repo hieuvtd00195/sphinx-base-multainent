@@ -20,7 +20,8 @@ const RoleProvider = ({ children }: { children: React.ReactChild }) => {
   useEffect(() => {
     if (isAuthenticated) {
       const accessToken = LocalStorage.get("accessToken");
-      const {roleList} = jwtDecode<{roleList: string}>(accessToken);
+    //   const {roleList} = jwtDecode<{roleList: string}>(accessToken);
+	  const roleList = "account-tenant1";
       if(roleList) {
         const parseRoleList = roleList.split(",");
         setValue(parseRoleList);

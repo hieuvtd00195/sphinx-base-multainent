@@ -4,6 +4,8 @@ import {
   CardActions,
   CardContent,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { Box, Container } from '@mui/system';
 import Page from 'components/Page';
@@ -16,6 +18,9 @@ import { styled } from '@mui/material/styles';
 import ProAreaChart from 'components/ProCardChart/ProAreaChart';
 import GroupsIcon from '@mui/icons-material/Groups';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import ProBarChart from 'components/ProCardChart/ProBarChart';
+import ProRadarChart from 'components/ProCardChart/ProLineChart';
+import ProLineChart from 'components/ProCardChart/ProLineChart';
 
 const TextLabelCardChart = styled(Typography)`
   color: #98a6ad;
@@ -28,6 +33,8 @@ const TextValueLabelCardChart = styled(Typography)`
   font-size: 26px;
 `;
 const Overview = () => {
+  const theme = useTheme();
+  const lgUp = useMediaQuery(theme.breakpoints.up('xl'));
   return (
     <Page title={'Account Management'}>
       <PageWrapper title={t('Thông tin Người dùng')}>
@@ -39,182 +46,234 @@ const Overview = () => {
             display: 'grid',
             gridTemplateRows: '1fr auto',
             gap: 3,
-            p: 3,
           }}
         >
           <Container
-            sx={{
+            style={{
+              width: '100%',
+              height: 'auto',
               display: 'flex',
-              flexDirection: 'row',
+              flexDirection: 'column',
               marginLeft: 0,
-              gap: 10,
-              marginTop: 5,
+              gap: 30,
+              maxWidth: lgUp ? 1536 : 1200,
             }}
           >
-            <Box>
-              <Card
-                sx={{ minWidth: 400 }}
-                style={{
-                  boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
-                  borderRadius: 10,
-                }}
-              >
-                <CardContent style={{ padding: 0 }}>
-                  <Box
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '20px 25px 20px 25px',
-                    }}
-                  >
+            <Box
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Box>
+                <Card
+                  sx={{ minWidth: 400 }}
+                  style={{
+                    boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                    borderRadius: 10,
+                  }}
+                >
+                  <CardContent style={{ padding: 0 }}>
                     <Box
                       style={{
-                        width: 50,
-                        height: 50,
-                        backgroundColor: 'purple',
-                        borderRadius: 10,
                         display: 'flex',
                         flexDirection: 'row',
+                        justifyContent: 'space-between',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                        padding: '20px 25px 20px 25px',
                       }}
                     >
-                      <ShoppingCartIcon
-                        style={{ color: 'white', width: 25, height: 25 }}
-                      />
+                      <Box
+                        style={{
+                          width: 50,
+                          height: 50,
+                          backgroundColor: 'purple',
+                          borderRadius: 10,
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                        }}
+                      >
+                        <ShoppingCartIcon
+                          style={{ color: 'white', width: 25, height: 25 }}
+                        />
+                      </Box>
+                      <Box
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                        }}
+                      >
+                        <TextLabelCardChart>New Orders</TextLabelCardChart>
+                        <TextValueLabelCardChart>
+                          3.5678
+                        </TextValueLabelCardChart>
+                      </Box>
                     </Box>
+
+                    <div style={{ height: 100 }}>
+                      <ProAreaChart
+                        strokeColor="purple"
+                        colorGradient="purple"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Box>
+              <Box>
+                <Card
+                  sx={{ minWidth: 400 }}
+                  style={{
+                    boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                    borderRadius: 10,
+                  }}
+                >
+                  <CardContent style={{ padding: 0 }}>
                     <Box
                       style={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '20px 25px 20px 25px',
                       }}
                     >
-                      <TextLabelCardChart>New Orders</TextLabelCardChart>
-                      <TextValueLabelCardChart>3.5678</TextValueLabelCardChart>
+                      <Box
+                        style={{
+                          width: 50,
+                          height: 50,
+                          backgroundColor: '#FE9800',
+                          borderRadius: 10,
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                        }}
+                      >
+                        <GroupsIcon
+                          style={{ color: 'white', width: 25, height: 25 }}
+                        />
+                      </Box>
+                      <Box
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                        }}
+                      >
+                        <TextLabelCardChart>Customers</TextLabelCardChart>
+                        <TextValueLabelCardChart>200</TextValueLabelCardChart>
+                      </Box>
                     </Box>
-                  </Box>
 
-                  <div style={{ height: 100 }}>
-                    <ProAreaChart strokeColor="purple" colorGradient="purple" />
-                  </div>
-                </CardContent>
-              </Card>
+                    <div style={{ height: 100 }}>
+                      <ProAreaChart
+                        strokeColor="#FE9800"
+                        colorGradient={'#FE9800'}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Box>
+              <Box>
+                <Card
+                  sx={{ minWidth: 400 }}
+                  style={{
+                    boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                    borderRadius: 10,
+                  }}
+                >
+                  <CardContent style={{ padding: 0 }}>
+                    <Box
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '20px 25px 20px 25px',
+                      }}
+                    >
+                      <Box
+                        style={{
+                          width: 50,
+                          height: 50,
+                          backgroundColor: '#4CAF50',
+                          borderRadius: 10,
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
+                        }}
+                      >
+                        <ConfirmationNumberIcon
+                          style={{ color: 'white', width: 25, height: 25 }}
+                        />
+                      </Box>
+                      <Box
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                        }}
+                      >
+                        <TextLabelCardChart>Ticket Resolved</TextLabelCardChart>
+                        <TextValueLabelCardChart>577</TextValueLabelCardChart>
+                      </Box>
+                    </Box>
+
+                    <div style={{ height: 100 }}>
+                      <ProAreaChart
+                        strokeColor="#4CAF50"
+                        colorGradient="#4CAF50"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Box>
             </Box>
-            <Box>
-              <Card
-                sx={{ minWidth: 400 }}
-                style={{
+            <Box
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+				justifyContent: 'space-between',
+              }}
+            >
+              <Box
+                sx={{
+                  backgroundColor: 'background.paper',
                   boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
-                  borderRadius: 10,
+                  borderRadius: 2,
+                  padding: '0px 20px 20px 20px',
                 }}
               >
-                <CardContent style={{ padding: 0 }}>
-                  <Box
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '20px 25px 20px 25px',
-                    }}
-                  >
-                    <Box
-                      style={{
-                        width: 50,
-                        height: 50,
-                        backgroundColor: '#FE9800',
-                        borderRadius: 10,
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
-                      }}
-                    >
-                      <GroupsIcon
-                        style={{ color: 'white', width: 25, height: 25 }}
-                      />
-                    </Box>
-                    <Box
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                      }}
-                    >
-                      <TextLabelCardChart>Customers</TextLabelCardChart>
-                      <TextValueLabelCardChart>200</TextValueLabelCardChart>
-                    </Box>
-                  </Box>
-
-                  <div style={{ height: 100 }}>
-                    <ProAreaChart
-                      strokeColor="#FE9800"
-                      colorGradient={'#FE9800'}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            </Box>
-            <Box>
-              <Card
-                sx={{ minWidth: 400 }}
-                style={{
+				<Typography style={{fontWeight: 600, margin: '20px 0px 20px 0px'}}>
+					BarChart
+				</Typography>
+                <div style={{ height: 350, width: 700 }}>
+                  <ProBarChart />
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  backgroundColor: 'background.paper',
                   boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
-                  borderRadius: 10,
+                  borderRadius: 2,
+				  padding: '0px 20px 20px 20px',
                 }}
               >
-                <CardContent style={{ padding: 0 }}>
-                  <Box
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '20px 25px 20px 25px',
-                    }}
-                  >
-                    <Box
-                      style={{
-                        width: 50,
-                        height: 50,
-                        backgroundColor: '#4CAF50',
-                        borderRadius: 10,
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 20%)',
-                      }}
-                    >
-                      <ConfirmationNumberIcon
-                        style={{ color: 'white', width: 25, height: 25 }}
-                      />
-                    </Box>
-                    <Box
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                      }}
-                    >
-                      <TextLabelCardChart>Ticket Resolved</TextLabelCardChart>
-                      <TextValueLabelCardChart>577</TextValueLabelCardChart>
-                    </Box>
-                  </Box>
-
-                  <div style={{ height: 100 }}>
-                    <ProAreaChart
-                      strokeColor="#4CAF50"
-                      colorGradient="#4CAF50"
-                    />
-                  </div>
-                </CardContent>
-              </Card>
+				<Typography style={{fontWeight: 600, margin: '20px 0px 20px 0px'}}>
+					BarChart
+				</Typography>
+                <div style={{ height: 350, width: 700 }}>
+                  <ProLineChart />
+                </div>
+              </Box>
             </Box>
           </Container>
         </Box>

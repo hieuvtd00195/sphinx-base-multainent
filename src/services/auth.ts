@@ -27,7 +27,7 @@ export const apiLogin = async (params: SignInParams) => {
     refreshToken:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsInVuaXF1ZV9uYW1lIjoiMTEiLCJqdGkiOiIyYjI3Y2U4Mi0xYTY4LTQwMTEtODU2Mi1kYTM1MjZmNzEzZmQiLCJpYXQiOjE2NDczMzk1MTYsIm5iZiI6MTY0NzMzOTUxNiwiZXhwIjoxNjQ3OTg3NTE2fQ.o7Yfi6tW5Oboe6nk0Pn8Y8Sjn1V8TKHOtY-_BcSpuWA',
     userId: '123',
-    roleId: 'MASTER',
+    roleId: 'account-tenant1',
   });
   return HttpClient.post<typeof params, SignInResponse>(
     Endpoints.auth.login,
