@@ -7,6 +7,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 // Auth
 const Login = Loadable(lazy(() => import('pages/Auth/Login')));
 const Register = Loadable(lazy(() => import('pages/Auth/Register')));
+const Recovery= Loadable(lazy(() => import('pages/Auth/Recovery')));
 
 const Auth: RouteObject = {
   path: 'auth',
@@ -28,6 +29,10 @@ const Auth: RouteObject = {
       path: 'register',
       element: <Register />,
     },
+	{
+		path: 'recovery',
+		element: <Recovery />,
+	  },
   ],
 };
 

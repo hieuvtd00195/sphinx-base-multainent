@@ -23,6 +23,10 @@ const usePages = () => {
               title: 'Login',
               path: '/authentication/login?disableGuard=true',
             },
+			{     title: 'recovery',
+			path: '/authentication/recovery?disableGuard=true',
+
+			}
           ],
         },
         {
