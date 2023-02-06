@@ -1,4 +1,5 @@
 import useAuth from 'hooks/useAuthState';
+import jwtDecode from 'jwt-decode';
 // import isEmpty from 'lodash.isempty';
 import React, { createContext, useEffect, useState } from 'react';
 // import { apiGetUserPermission } from 'services/auth';
@@ -14,11 +15,16 @@ const RootRoleValue: RootRoleType = {
 
 export const RoleContext = createContext(RootRoleValue);
 const RoleProvider = ({ children }: { children: React.ReactChild }) => {
-  const [value, setValue] = useState<any[]>(LocalStorage.get('roleId') ?? []);
+  const [value, setValue] = useState<any[]>([]);
   const { isAuthenticated } = useAuth();
   useEffect(() => {
     if (isAuthenticated) {
-		LocalStorage.set('roleId', 'MASTER');
+      const accessToken = LocalStorage.get("accessToken");
+      const {roleList} = jwtDecode<{roleList: string}>(accessToken);
+      if(roleList) {
+        const parseRoleList = roleList.split(",");
+        setValue(parseRoleList);
+      }
     //   apiGetUserPermission()
     //     .then((res) => {
     //       if (!isEmpty(res.responseData)) {
