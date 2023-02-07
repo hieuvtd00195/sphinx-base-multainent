@@ -1,5 +1,15 @@
 import type { AnySchema, ValidationError } from 'yup';
-import { date, number, object, setLocale, string, mixed, array } from 'yup';
+import {
+  array,
+  date,
+  mixed,
+  number,
+  object,
+  ref,
+  setLocale,
+  string,
+  boolean,
+} from 'yup';
 import type { ObjectShape } from 'yup/lib/object';
 import RegExps from './RegExps';
 
@@ -16,12 +26,20 @@ class Validation {
     });
   }
 
+  public ref(key: string) {
+    return ref(key);
+  }
+
   public mixed() {
     return mixed();
   }
 
   public array() {
     return array();
+  }
+
+  public boolean() {
+    return boolean();
   }
 
   public resolver(error: ValidationError) {
@@ -53,11 +71,19 @@ class Validation {
   }
 
   public number() {
-    return number();
+    return number().required().typeError('validation.invalidNumber');
   }
 
   public option() {
     return number().required().nullable().default(null);
+  }
+
+  public optionNumber() {
+    return number().required().nullable().default(null);
+  }
+
+  public optionString() {
+    return string().required().nullable().default(null);
   }
 
   public select(value: number) {
@@ -76,7 +102,7 @@ class Validation {
     return string()
       .trim()
       .required()
-      .matches(RegExps.email, 'validation.validEmail')
+      .matches(RegExps.email, 'validation.email')
       .max(255)
       .default('');
   }
@@ -85,17 +111,29 @@ class Validation {
     return string()
       .trim()
       .required()
-      .matches(RegExps.phone, 'validation.validPhone')
+      .matches(RegExps.phone, 'validation.phone')
       .max(255)
       .default('');
   }
-  public fullname(){
-	return string()
-	.trim()
-	.required()
-	// .matches(RegExps.phone, 'validation.validPhone')
-	.max(255)
-	.default('');
+
+  public username() {
+    return this.pattern(RegExps.username, 'validation.username')
+      .min(4, 'validation.username')
+      .max(15, 'validation.username');
+  }
+  public fullname() {
+    return string()
+      .trim()
+      .required()
+      .max(255)
+      .default('');
+  }
+
+  public password() {
+    return this.pattern(RegExps.password, 'validation.password').max(
+      15,
+      'validation.passwordLength'
+    );
   }
 
   public description() {
@@ -104,6 +142,20 @@ class Validation {
 
   public pattern(regexp: RegExp, message?: string) {
     return this.string().matches(regexp, message);
+  }
+
+  public numbers() {
+    return array()
+      .of(number().required())
+      .min(1, 'validation.required')
+      .default([]);
+  }
+
+  public strings() {
+    return array()
+      .of(string().required())
+      .min(1, 'validation.required')
+      .default([]);
   }
 }
 

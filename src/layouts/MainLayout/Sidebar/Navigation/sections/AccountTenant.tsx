@@ -6,10 +6,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const useAccountTenant = () => {
   const accountTenant: MenuSection = useMemo(() => {
     return {
-      title: 'AccountTenant',
+      title: 'Account',
       items: [
         {
-          title: 'AccountTenant',
+          title: 'Account',
           path: '/account',
           icon: <AccountCircleIcon />,
           keyPermission: "account-tenant",

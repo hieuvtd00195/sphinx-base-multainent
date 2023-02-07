@@ -16,6 +16,8 @@ const ProTableCell = styled(TableCell, {
       prop
     ),
 })<Props>(({ theme, fixed, header, selected, leftOffset, rightOffset }) => ({
+  paddingLeft: theme.spacing(1),
+  paddingRight: theme.spacing(1),
   ...(fixed && {
     position: 'sticky',
     ...(fixed === 'left' && {

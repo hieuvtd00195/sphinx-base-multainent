@@ -6,7 +6,7 @@ import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
 import Configurations from './Configurations';
 import AccountTenant from './AccountTenant'
-import RoleRoute from './RoleRoute';
+import Rolemanagement from './RoleManagement';
 
 // General
 const Overview = Loadable(lazy(() => import('pages/General/Overview')));
@@ -34,6 +34,7 @@ const Main: RouteObject = {
         { path: '/logistics', element: <Logistics /> },
         // { path: '/account', element: <Account /> },
 		AccountTenant,
+		Rolemanagement,
         Configurations,
       ],
     },

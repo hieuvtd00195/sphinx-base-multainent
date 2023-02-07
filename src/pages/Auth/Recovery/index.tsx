@@ -82,7 +82,7 @@ const Copyright = () => {
         Sphinx JSC
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'} {`Handcrafted by Đức Lê ft. Hin.`}
+      {/* {'.'} {`Handcrafted by Đức Lê ft. Hin.`} */}
     </Typography>
   );
 };

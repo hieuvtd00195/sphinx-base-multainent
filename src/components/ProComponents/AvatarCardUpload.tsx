@@ -1,5 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import ActionButton from 'components/ProButton/ActionButton';
 import type { DropzoneOptions } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
 
@@ -15,11 +17,11 @@ const AvatarCardUpload = (props: FileDropzoneProps) => {
   const { src, error, accept, maxFiles, maxSize, minSize, onDrop } = props;
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept:{
-		'image/png': ['.png'],
-		'image/jpg': ['.jpg'],
-		'image/jpeg': ['.jpeg'],
-		},
+    accept: {
+      'image/png': ['.png'],
+      'image/jpg': ['.jpg'],
+      'image/jpeg': ['.jpeg'],
+    },
     maxFiles,
     maxSize,
     minSize,
@@ -28,30 +30,31 @@ const AvatarCardUpload = (props: FileDropzoneProps) => {
   });
 
   return (
-    <Box
-      sx={{
-        border: 3,
-        borderRadius: 50,
-        borderStyle: 'dashed',
-        borderColor: 'divider',
-        height: 200,
-        width: 200,
-        position: 'relative',
-        ...(src && {
-          backgroundImage: `url(${src})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          cursor: 'pointer',
-        }),
-        ...(error && {
-          borderColor: 'error.main',
-        }),
-      }}
-      {...getRootProps()}
-    >
-      <input {...getInputProps()} />
-      {!src && (
+    <Container>
+      <Box
+        sx={{
+          border: 3,
+          borderRadius: 50,
+          borderStyle: 'dashed',
+          borderColor: 'divider',
+          height: 200,
+          width: 200,
+		  boxShadow: '5px 3px 10px 0 rgb(21 15 15 / 10%)',
+          position: 'relative',
+          ...(src && {
+            backgroundImage: `url(${src})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+			
+            cursor: 'pointer',
+          }),
+          ...(error && {
+            borderColor: 'error.main',
+          }),
+        }}
+        {...getRootProps()}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -59,12 +62,26 @@ const AvatarCardUpload = (props: FileDropzoneProps) => {
             justifyContent: 'center',
             alignItems: 'center',
             height: 120,
+			position: 'absolute',
+			left: 15,
+			bottom: -90
           }}
         >
-          <AddIcon fontSize="large" color="action" />
+          {/* <AddIcon fontSize="large" color="action" /> */}
+          <Box sx={{ mt: 3 }}>
+            <ActionButton
+              size="large"
+              type="submit"
+              actionType="camera"
+              // onClick={() => getInputProps()}
+              // loading={form.formState.isSubmitting}
+            >
+              Change Avatar<input {...getInputProps()} />
+            </ActionButton>
+          </Box>
         </Box>
-      )}
-    </Box>
+      </Box>
+    </Container>
   );
 };
 

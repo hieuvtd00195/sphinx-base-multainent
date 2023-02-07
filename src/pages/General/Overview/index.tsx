@@ -119,6 +119,7 @@ const Overview = () => {
                       <ProAreaChart
                         strokeColor="purple"
                         colorGradient="purple"
+						dataKey='uv'
                       />
                     </div>
                   </CardContent>
@@ -175,6 +176,7 @@ const Overview = () => {
                       <ProAreaChart
                         strokeColor="#FE9800"
                         colorGradient={'#FE9800'}
+						dataKey='pv'
                       />
                     </div>
                   </CardContent>
@@ -231,6 +233,7 @@ const Overview = () => {
                       <ProAreaChart
                         strokeColor="#4CAF50"
                         colorGradient="#4CAF50"
+						dataKey='amt'
                       />
                     </div>
                   </CardContent>
@@ -268,7 +271,7 @@ const Overview = () => {
                 }}
               >
 				<Typography style={{fontWeight: 600, margin: '20px 0px 20px 0px'}}>
-					BarChart
+					LineChart
 				</Typography>
                 <div style={{ height: 350, width: 700 }}>
                   <ProLineChart />

@@ -23,7 +23,7 @@ const SplashScreen = () => {
           {__TITLE__}
         </Typography>
         <Box sx={{ width: { xs: 250, sm: 400 } }}>
-          <LinearProgress color="success" />
+          <LinearProgress color="primary" />
         </Box>
       </Box>
     </Box>

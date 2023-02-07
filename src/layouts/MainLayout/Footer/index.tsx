@@ -11,7 +11,7 @@ const Footer = () => {
           Origin portal v{__VERSION__}
         </Typography>
       </Box>
-      <Typography variant="subtitle2">Handcrafted by Đức Lê ft. Hin.</Typography>
+      <Typography variant="subtitle2">Handcrafted by Đức Lê.</Typography>
     </FooterRoot>
   );
 };

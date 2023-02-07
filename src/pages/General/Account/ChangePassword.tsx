@@ -46,6 +46,8 @@ const ChangePassword = () => {
     event.preventDefault();
   };
 
+
+
   const handleSubmit = async (values: FormValues) => {};
   return (
     <Page title={'Change Password'}>

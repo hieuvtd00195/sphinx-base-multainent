@@ -29,9 +29,8 @@ const useGeneral = () => {
         {
           title: 'Dashboard',
           path: '/',
-icon: <AirplayIcon />,
+          icon: <AirplayIcon />,
           keyPermission: 'overview',
-
         },
         {
           title: 'Analytics',

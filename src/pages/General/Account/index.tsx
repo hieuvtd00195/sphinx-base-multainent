@@ -14,17 +14,43 @@ import Avatar from '@mui/material/Avatar';
 import Validation from 'utils/Validation';
 import AvatarCardUpload from 'components/ProComponents/AvatarCardUpload';
 import Chip from '@mui/material/Chip';
+import LocalStorage from 'utils/LocalStorage';
+import jwt_decode from 'jwt-decode';
 
 interface FormValues {
   fullName: string;
-  addresss: string;
+  email: string;
+  address: string;
   password: string;
   tenantCode: string;
 }
+
+interface IDecode {
+	client_id: string;
+	email: string;
+	email_verified: string;
+	exp: number;
+	given_name: string;
+	iat: number;
+	iss: string;
+	oi_prst: string;
+	oi_tkn_id: string;
+	phone_number_verified: string;
+	preferred_username: string;
+	role: string;
+	sub: string;
+	unique_name: string;
+	name: string;
+	emailaddress: string;
+	address: string;
+  }
+
 const Account = () => {
   const form = useForm<FormValues>({
     mode: 'onChange',
+	
   });
+console.log(form)
   const [previewImage, setPreviewImage] = useState<string>('');
   const [logo, setLogo] = useState<File | null>();
   const handleDropCover = async ([file]: File[]) => {
@@ -35,10 +61,21 @@ const Account = () => {
 
   useEffect(() => {
     setPreviewImage(
-      'https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png'
+      'https://pixinvent.com/demo/materialize-mui-react-nextjs-admin-template/demo-1/images/avatars/1.png'
     );
     setLogo(null);
   }, []);
+
+  var token = LocalStorage.get('accessToken');
+  var decoded: IDecode = jwt_decode(token);
+
+  useEffect(() => {
+	form.reset({
+		fullName: decoded.name,
+		email: "hieuvtd00195@gmail.com",
+		address: "1st Level, HL Tower, 6/82 Duy Tan Street, Cau Giay Ward, Hanoi, Vietnam",
+	})
+  },[])
 
   const handleSubmit = async (values: FormValues) => {};
   return (
@@ -81,11 +118,12 @@ const Account = () => {
                       name="fullName"
                       type="text"
                       validate={Validation.fullname()}
+					  
                     />
                   </ProFormLabel>
-                  <ProFormLabel required title="Email address" name="userName">
+                  <ProFormLabel required title="Email address" name="email">
                     <ProFormTextField
-                      name="userName"
+                      name="email"
                       validate={Validation.email()}
                       type="email"
                     />

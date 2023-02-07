@@ -11,10 +11,23 @@ import LoginIcon from '@mui/icons-material/Login';
 import SaveIcon from '@mui/icons-material/Save';
 import SearchIcon from '@mui/icons-material/Search';
 import UploadIcon from '@mui/icons-material/Upload';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import type { LoadingButtonProps } from '@mui/lab/LoadingButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';
 import Logger from 'utils/Logger';
+import { Fragment } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+const ActionIcon = () => {
+	return (
+	  <Fragment>
+		<MenuIcon />
+		<ExpandMoreIcon />
+	  </Fragment>
+	);
+  };
 
 const Icons = {
   search: SearchIcon,
@@ -30,6 +43,8 @@ const Icons = {
   outward: ArrowOutwardIcon,
   login: LoginIcon,
   edit: EditIcon,
+  camera:CameraAltIcon,
+  action: ActionIcon,
 } as const;
 
 interface Props extends LoadingButtonProps {

@@ -117,7 +117,7 @@ const ProTable = <T extends object>(
     if (typeof hiddenFilterActions === 'boolean') {
       return hiddenFilterActions;
     }
-    return false;
+    return true;
   });
 
   const [hiddenVisibilityColumns] = useState<boolean>(() => {
@@ -125,7 +125,7 @@ const ProTable = <T extends object>(
     if (typeof hiddenVisibilityColumns === 'boolean') {
       return hiddenVisibilityColumns;
     }
-    return false;
+    return true;
   });
 
   const [hiddenRefresh] = useState<boolean>(() => {
@@ -133,7 +133,7 @@ const ProTable = <T extends object>(
     if (typeof hiddenRefresh === 'boolean') {
       return hiddenRefresh;
     }
-    return false;
+    return true;
   });
 
   // Selection state

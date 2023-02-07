@@ -4,7 +4,7 @@ import type { RouteObject } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 // Configurations
-const Employees = Loadable(lazy(() => import('pages/Configurations/Organisation/Employees')));
+const Employees = Loadable(lazy(() => import('pages/Configurations/Organisation/Employees/index')));
 const Company = Loadable(lazy(() => import('pages/Configurations/Organisation/Company')));
 const RolesPermissions = Loadable(lazy(() => import('pages/Configurations/Security/RolesPermissions')));
 const Authentication = Loadable(lazy(() => import('pages/Configurations/Security/Authentication')));

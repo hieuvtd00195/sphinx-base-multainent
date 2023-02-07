@@ -18,6 +18,8 @@ import store from 'store';
 // React i18n
 import 'locales';
 import RoleProvider from 'contexts/RoleProvider';
+import { NotificationProvider } from 'contexts/Notification';
+import DialogProvider from 'contexts/Dialog';
 
 // React query
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ const App = () => {
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
               <SettingsProvider>
+			  <NotificationProvider>
+			  <DialogProvider>
                 <CssBaseline enableColorScheme />
                 <GlobalCssBaseline />
                 <RoleProvider>
@@ -38,6 +42,8 @@ const App = () => {
                     fallbackElement={<SplashScreen />}
                   />
                 </RoleProvider>
+				</DialogProvider>
+				</NotificationProvider>
               </SettingsProvider>
             </AuthProvider>
           </QueryClientProvider>

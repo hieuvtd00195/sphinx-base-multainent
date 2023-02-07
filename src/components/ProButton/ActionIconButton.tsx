@@ -7,6 +7,18 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import IconButton from '@mui/material/IconButton';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { Fragment } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+const ActionIcon = () => {
+	return (
+	  <Fragment>
+		<MenuIcon />
+		<ExpandMoreIcon />
+	  </Fragment>
+	);
+  };
 
 const icons = {
   delete: DeleteIcon,
@@ -16,6 +28,7 @@ const icons = {
   sub: IndeterminateCheckBoxOutlinedIcon,
   view: VisibilityIcon,
   more: MoreHorizIcon,
+  action: ActionIcon,
 } as const;
 
 interface Props extends IconButtonProps {

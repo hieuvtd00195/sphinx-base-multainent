@@ -15,6 +15,7 @@ import {
 interface Props {
 	colorGradient: string;
 	strokeColor: string;
+	dataKey: string;
 }
 
 const data = [
@@ -62,7 +63,7 @@ const data = [
 	}
   ];
 const ProAreaChart = (props: Props) => {
-	const {colorGradient, strokeColor} = props;
+	const {colorGradient, strokeColor,dataKey} = props;
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -72,7 +73,7 @@ const ProAreaChart = (props: Props) => {
           top: 10,
           right: 0,
           left: 0,
-          bottom: 30,
+          bottom: 0,
         }}
       >
         <defs>
@@ -84,7 +85,7 @@ const ProAreaChart = (props: Props) => {
         <Tooltip cursor={{ stroke: 'none', strokeWidth: 2 }} />
         <Area
           type="monotone"
-          dataKey="uv"
+          dataKey={dataKey}
           stroke={strokeColor || "purple"}
           fill={`url(#colorUv${colorGradient})`}
           strokeWidth={3}

@@ -43,6 +43,7 @@ interface IDecode {
   role: string;
   sub: string;
   unique_name: string;
+  name: string;
 }
 
 const Header = () => {
@@ -135,7 +136,7 @@ const Header = () => {
               />
             </Box>
             <Typography color="black" fontSize="14px" fontWeight={500}>
-              {decoded.unique_name ?? 'UserName'}
+              {decoded.name ?? 'UserName'}
             </Typography>
           </Box>
         </StyleButton>
